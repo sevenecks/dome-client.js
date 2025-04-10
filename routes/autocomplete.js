@@ -1,5 +1,5 @@
-var logger = require( '../lib/logger' ),
-    config = require( '../lib/config' ),
+var path   = require( 'path' ),
+    logger = require( '../lib/logger' ).named( 'routes/' + path.basename( __filename, '.js' ) ),
     fs     = require( 'fs' );
 
 
@@ -7,9 +7,14 @@ var AUTOCOMPLETE = {};
 var ac = function(usertype, next) {
   if (AUTOCOMPLETE[usertype]) {
     next(null, AUTOCOMPLETE[usertype]);
-  } else if (config.autocomplete[usertype]) {
-    console.log(config.autocomplete[usertype]);
-    fs.readFile(config.autocomplete[usertype], 'utf8', function( err, data ) {
+  } else if ((usertype == 'p' && process.env.AUTOCOMPLETE_PLAYER) || (usertype == 'o' && process.env.AUTOCOMPLETE_GUEST)) {
+      let filename = '';
+      if (usertype == 'p') {
+        filename = process.env.AUTOCOMPLETE_PLAYER;
+    } else if (usertype == 'o') {
+        filename = process.env.AUTOCOMPLETE_GUEST;
+    }
+    fs.readFile(filename, 'utf8', function( err, data ) {
       AUTOCOMPLETE[usertype] = data.split("\n");
       next(null, AUTOCOMPLETE[usertype]);
     });

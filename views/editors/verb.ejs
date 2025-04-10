@@ -12,7 +12,7 @@
 	  }
   }
 %>
-<% layout('../shells/child-window') -%>
+<%- include('../shells/child-window-header') -%>
 <div class="editor">
   <div class="menu">
     <% if ( !editor.readonly ) { %>
@@ -22,13 +22,52 @@
       <button class="btn btn-danger abort pull-left">CLOSE</button>
       <button class="btn pull-right">READ-ONLY</button>
     <% } %>
+    <div id="verb-status-holder" class="verb-status">Unsaved</div>
   </div>
   <div id="verb-editor-holder" class="verb-editor"></div>
 </div>
 <script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/ace-sd/keybinding-vim.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/ace-sd/mode-moo.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var verbEditor = ace.edit("verb-editor-holder");
     verbEditor.setTheme("ace/theme/<%=editorTheme%>");
     verbEditor.getSession().setMode("ace/mode/moo");
+    verbEditor.commands.addCommand({
+        name: 'vim-enable',
+        bindKey: {win: 'Ctrl-1',  mac: 'Command-1'},
+        exec: function(editor) {
+            verbEditor.setKeyboardHandler("ace/keyboard/vim");
+            jQuery('#verb-status-holder').html('VIM MODE');
+         },
+        readOnly: true // false if this command should not apply in readOnly mode
+    }); 
+    verbEditor.commands.addCommand({
+        name: 'vim-disable',
+        bindKey: {win: 'Ctrl-0',  mac: 'Command-0'},
+        exec: function(editor) {
+            verbEditor.setKeyboardHandler("");
+            jQuery("#verb-status-holder").html("REGULAR MODE");
+         },
+        readOnly: true // false if this command should not apply in readOnly mode
+    }); 
+    verbEditor.commands.addCommand({
+        name: 'save',
+        bindKey: {win: 'Ctrl-s', mac: 'Command-s'},
+        exec: function(editor) {
+            jQuery(".menu").find(".upload").click();
+         },
+        readOnly: true
+    });
+    verbEditor.commands.addCommand({
+        name: 'abort',
+        bindKey: {win: 'Ctrl-w', mac: 'Command-w'},
+        exec: function(editor) {
+            jQuery(".menu").find(".abort").click();
+            jQuery("#verb-status-holder").html("Closing Window...");
+        },
+        readOnly: true
+    });
 </script>
 <script src="/js/editor-window.js"></script>
+<%- include('../shells/child-window-footer') -%>

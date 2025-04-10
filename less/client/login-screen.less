@@ -1,0 +1,335 @@
+.moo-login-page, .client-options-page {
+  margin-top: 0;
+
+  .connect-error {
+    margin: 20px auto;
+    width: 80%;
+    background-color: black;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: #A94442;
+    font-size: larger;
+    text-align: left;
+
+    .close {
+      color: #A94442;
+      opacity: .5;
+      margin-top: -10px;
+      margin-right: -5px;
+    }
+  }
+
+  .version {
+    font-family: 'Source Code Pro';
+
+    height: 52px;
+    text-shadow: 1px 1px 0 @black;
+    color: darken(@domeOrange, 10%);
+    .border-radius(8px);
+
+    width: 100%;
+    padding: 5px;
+    right: auto;
+    bottom: auto;
+    position: relative;
+    background-color: transparent;
+    margin-left: 0;
+    white-space: normal;
+    border: 0;
+    SPAN {
+      margin: 5px;
+    }
+  }
+
+  .connection-stats {
+    display: inline-block;
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    background-color: RGBA(0, 0, 0, 0.5);
+    border: 2px solid black;
+    .border-radius(8px);
+    padding: 15px 20px;
+    white-space: nowrap;
+    font-family: 'Source Code Pro';
+    color: darken(@domeOrange, 10%);
+    max-height: 60%;
+    overflow-x: scroll;
+    overflow-y: visible;
+    TABLE {
+      TR.table-header {
+        font-weight: bold;
+      }
+      TD.count-column {
+        padding: 5px;
+      }
+    }
+  }
+
+  .tabbed-panel {
+    width: 350px;
+    margin: 20px auto;
+    background-color: RGBA(0, 0, 0, 0.5);
+    border: 2px solid black;
+    .border-radius(8px);
+    .tab-panel {
+      overflow: overlay;
+      padding: 0 20px 20px 20px;
+      &.hidden-panel {
+        display: none;
+      }
+
+      .relative-group {
+        display: inline-block;
+        width: 100%;
+        clear: both;
+        margin-top: 5px;
+
+        .btn-primary, .btn-success {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  H1 {
+
+    text-shadow: 1px 1px 0 @black;
+    background-color: RGBA(0, 0, 0, 0.5);
+    border: 2px solid @black;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 30px;
+    padding: 5px 10px;
+    width: auto;
+  }
+  .option-group {
+    padding: 5px;
+    clear: both;
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+
+    &.connect-as-group, &.website-login-group {
+      background-color: RGBA(0, 0, 0, 0.5);
+      border: 2px solid RGBA(0, 0, 0, 1);
+      border-radius: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      padding: 15px 20px;
+
+      margin-top: 20px;
+
+      display: block;
+      min-height: 300px;
+      H2 {
+        text-shadow: 1px 1px 0 @black;
+      }
+    }
+
+    .btn-xlarge {
+      padding: 11px 14px;
+      font-size: 24px;
+      line-height: normal;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+    INPUT[type=text], INPUT[type=password], INPUT[type=email] {
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid @gray;
+      color: @almostBlack;
+    }
+
+    label {
+      text-shadow: 1px 1px 0 @black;
+      &.gogogo {
+        color: @gray;
+      }
+    }
+
+    .moo-login-box {
+      width: 98%;
+      label {
+        text-shadow: 1px 1px 0 @black;
+      }
+      #connect_as {
+        cursor: pointer;
+      }
+      .client-options {
+        color: @black;
+        width: 50%;
+      }
+      .relative-group {
+        position: relative;
+        margin-top: 10px;
+        #secure-toggle, .glyph-unlocked, .glyph-locked {
+          cursor: pointer;
+        }
+        A, INPUT, I {
+          vertical-align: top;
+          margin-right: 6px;
+        }
+      }
+      DIV#user-picker {
+        margin-bottom: 10px;
+        UL.dropdown-menu {
+          background-color: #171717;
+          border: 1px solid @black;
+          padding: 0;
+          .box-shadow {
+              border: 5px 5px 5px rgba(0,0,0,0.5);
+          }
+          .divider {
+            background-color: @black;
+            border-bottom: 1px solid @gray;
+            margin: 0;
+            padding: 0;
+          }
+          LI {
+            margin-right: 0;
+            padding: 4px;
+            color: @brightBlue;
+            cursor: pointer;
+            &:hover, &:focus {
+              color: lighten(#066, 10%);
+              /* background-color: RGBA(0,0,0,0.6); */
+              #gradient > .vertical(@black, darken(#111, 5%));
+            }
+          }
+        }
+      }
+    }
+  }
+  .centered {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .left-seam {
+    border-left: 2px dashed #CCC;
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .moo-login-page, .client-options-page {
+    margin-top: 50px;
+    H1 {
+      padding: 15px 20px;
+      width: 362px;
+      margin-left: 50px;
+      font-size: 36px;
+    }
+
+    .guest-group {
+      display: block;
+      width: 35%;
+    }
+    .option-group {
+      width: 50%;
+      margin: 0 auto;
+      padding-top: 5px;
+      margin-top: 40px;
+      &.connect-as-group, &.website-login-group {
+        margin-top: 40px;
+      }
+
+      .moo-login-box {
+        margin-left: 60px;
+        width: 225px;
+        .client-options {
+          width: 50%;
+        }
+        .relative-group {
+          position: relative;
+          margin-top: 10px;
+          #secure-toggle, .glyph-unlocked, .glyph-locked {
+            position: absolute;
+            right: -40px;
+            top: 1px;
+            left: auto;
+          }
+        }
+      }
+    }
+
+    .version {
+      position:absolute;
+      width: auto;
+      height: 52px;
+      right: 20px;
+      bottom: 20px;
+      margin-left: 50px;
+      padding: 15px 20px;
+      background-color: RGBA(0, 0, 0, 0.5);
+      border: 2px solid @black;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .moo-login-page, .client-options-page {
+
+    .connect-error {
+      margin: 20px auto;
+      width: 80%;
+      font-size: larger;
+    }
+
+    .option-group {
+      padding-left: 20px;
+      float: left;
+      height: 250px;
+      width: 35%;
+      clear: none;
+      &.connect-as-group, &.website-login-group {
+        padding: 15px 20px;
+        margin-top: 60px;
+        margin-left: 120px;
+        min-height: 300px;
+        min-width: 380px;
+      }
+
+      .btn-xlarge {
+        padding: 11px 14px;
+        font-size: 24px;
+        line-height: normal;
+      }
+
+      INPUT[type=text], INPUT[type=password], INPUT[type=email] {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+
+      .moo-login-box {
+        margin-left: 40px;
+        DIV#user-picker {
+          margin-bottom: 10px;
+          UL.dropdown-menu {
+            padding: 0;
+            .divider {
+              margin: 0;
+              padding: 0;
+            }
+            LI {
+              margin-right: 0;
+              padding: 4px;
+            }
+          }
+        }
+      }
+    }
+    .centered {
+      margin-top: 80px;
+      margin-bottom: 20px;
+    }
+  }
+}
+

@@ -1,4 +1,3 @@
-
 var connectFunction = function(manual) {
   if (!manual) {
     var u = $('#moo-username').val();
@@ -179,14 +178,6 @@ $(document).ready(function(){
 
   var contact_panel = $('#contact_panel');
   var address_panel = $('#address_panel');
-
-  var next_btn = $('#next_btn');
-  if (next_btn && next_btn.length ) {
-    next_btn.on('click', function () {
-      contact_panel.removeClass('hidden-panel');
-      address_panel.addClass('hidden-panel');
-    });
-  }
 
   var back_btn = $('#back_btn');
   if (back_btn && back_btn.length ) {
