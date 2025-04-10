@@ -1,14 +1,10 @@
 #!/bin/bash
+rm -f public/css/client.css
+rm -f public/js/player-client.js
+rm -f public/js/player-client.min.js
+./node_modules/uglify-js/bin/uglifyjs public/js/client-src/*.js -b --comments --output public/js/player-client.js
+./node_modules/uglify-js/bin/uglifyjs public/js/player-client.js -c --output public/js/player-client.min.js
 
-if [ -z "$NODE_ENV" ]
-then
-  NODE_ENV="default"
-  export $NODE_ENV
-fi
-
-GIT_HASH=`git log --format="%H" --max-count=1 less/*`;
-GIT_HASH=z$GIT_HASH;
-export $GIT_HASH;
-
-rm public/css/client.css;
-forever stop client-app.js; rm ~/.forever/dome-client.js.log; forever start -l dome-client.js.log client-app.js $GIT_HASH;
+GIT_HASH=$(git log --format="%H" --max-count=1 less/*)
+export GIT_HASH=$GIT_HASH
+node client-app.js $GIT_HASH

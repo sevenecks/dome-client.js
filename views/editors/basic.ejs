@@ -1,4 +1,4 @@
-<% layout('../shells/child-window') -%>
+<%- include('../shells/child-window-header') -%>
 <div class="editor">
   <div class="menu">
     <% if ( !editor.readonly ) { %>
@@ -15,3 +15,4 @@
     var verbEditor = null;
 </script>
 <script src="/js/editor-window.js"></script>
+<%- include('../shells/child-window-footer') -%>

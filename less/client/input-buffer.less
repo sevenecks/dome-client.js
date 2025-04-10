@@ -1,0 +1,26 @@
+
+#browser-client {
+  #inputBuffer {
+    height: 50px;
+    line-height: 16px;
+    width: 100%;
+    background-color: @inputBG;
+    color: @inputFG;
+    font-weight: normal;
+    font-size: 14px;
+    position: fixed;
+    bottom: 2px;
+    margin-bottom: 0;
+    padding-left: 5px;
+    border: 0;
+    border-top: 2px solid @frameColor;
+    &:focus {
+      box-shadow: none;
+    }
+    &.colorset-snow {
+      background-color: @inputFG;
+      color: @inputBG;
+      border-color: #222;
+    }
+  }
+}

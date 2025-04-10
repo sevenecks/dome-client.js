@@ -1,5 +1,20 @@
 # CHANGE LOG
 
+## 04/11/25
+
+* Updated README
+* Fixing a few things before releasing
+* Updated copyright year
+
+## 11/15/23
+
+* Full rebuild from the Sindome Webclient, stripping out unneeded things
+* Integration of .env for all configuration
+* Updated README and instructions to make setup much easier
+* All dependencies have been Updated
+* Can runs on Node 18 now!
+* A bunch of other changes, this is a major release and is not backwards compatible in many ways.
+
 ## 01/17/19
 
 * Added ability to toggle the connect to any server / connect to a specific game option in config

@@ -1,32 +1,53 @@
-var logger = require( '../lib/logger' ),
-    config = require( '../lib/config' ),
-    fs     = require( 'fs' );
+var path   = require( 'path' ),
+    fs     = require( 'fs' ),
+    _  = require( 'underscore' );
+
+var connected = {
+  count: 0,
+  games: {}
+};
+
+var whenConnected = function(address) {
+  connected.count++;
+  var key = address.host + ':' + address.port;
+  key = key.toLowerCase();
+  if (connected.games[key]) {
+    connected.games[key]++;
+  } else {
+    connected.games[key] = 1;
+  }
+};
+
+var connected = function() {
+  return {
+    count: connected.count,
+    games: _.sortBy( _.map( connected.games, function ( count, game ) { return { address: game, count: count }; } ), 'count' ).reverse()
+  };
+};
 
 var exports = module.exports;
+
 exports.connect = function( req, res ) {
-  try {
+    console.log(connected())
     res.render( 'connect-as', { 
-      'connectAnywhere': config.node.connectAnywhere, 
-      'mooHostname': config.moo.host,
-      'mooPort': config.moo.port,
+      'connectAnywhere': process.env.CONNECT_ANYWHERE == 'true' ? 1 : 0,
+      'mooHostname': process.env.GAME_HOST,
+      'mooPort': process.env.GAME_PORT,
+      'stats': connected(),
       'meta' : {
-       'title' : 'Connect - Mud/Moo Client',
-       'description' : 'Connect to our game using its state of the art web-based game Client. No flash, no plugins, just a modern browser. Play with your iPad or check in from the company computer. There\'s nothing to install.',
-       'keywords' : 'moo-client, dome-client.js, mud client, telnet client, modern gaming client, text-based game, websocket-telnet'
+       'title' : 'Connect - Modern Gaming Client',
+       'description' : 'Connect to Sindome using its state of the art Modern Gaming Client. No flash, no plugins, just a modern browser. Play with your iPad or check in from the company computer. There\'s nothing to install.',
+       'keywords' : 'moo-client, telnet client, modern gaming client, play sindome, text-based game, websocket-telnet'
       }
     });
-  } catch( e ) {
-    logger.debug('exception caught:');
-    logger.debug(e);
-  }
 };
 
 exports.options = function( req, res ) {
   res.render( 'client-options', {
     'meta' : {
-      'title' : 'Options - Mud Game Client',
-      'description': 'Configure your preferred options when using our state of the art Game Client.',
-      'keywords': 'moo-client, mud-client,  dome-client.js, client options, configure preferences, command hints'
+      'title' : 'Options - Modern Gaming Client',
+      'description': 'Configure your preferred options when using our state of the art Modern Gaming Client.',
+      'keywords': 'moo-client, client options, configure preferences, command hints, short urls, cheats'
     }
   });
 };
@@ -34,16 +55,16 @@ exports.options = function( req, res ) {
 exports.client = function( req, res ) {
   res.render( 'client', {
     'meta' : {
-      'title' : '' + config.node.poweredBy + '\'s Game Client',
-      'description' : 'Someone playing ' + config.node.poweredBy + ' via its web-based game Client',
-      'keywords' : 'moo-client, dome-client.js, telnet client, modern gaming client, text-based game, websocket-telnet'
+      'title' : 'Sindome\'s Modern Gaming Client',
+      'description' : 'Someone playing Sindome via Sindome\'s Modern Gaming Client',
+      'keywords' : 'moo-client, telnet client, modern gaming client, play sindome, text-based game, websocket-telnet'
     }
   });
 };
 
 exports.editor = function( req, res ) {
   var template = editorType = req.params.type;
-  if ( editorType != "verb") {
+  if ( editorType != "verb" && editorType != "note-viewer") {
     // only verb gets special support right now
     template = "basic";
   }
@@ -53,8 +74,8 @@ exports.editor = function( req, res ) {
     },
     'meta' : {
       'title' : 'Untitled Local Editor ',
-      'description' : 'Local editor window for the dome-client.js client.',
-      'keywords' : 'dome-client.js editor'      
+      'description' : 'Local editor window for the Sindome Modern Gaming Client.',
+      'keywords' : 'gaming client editor'      
     }
   });
 }

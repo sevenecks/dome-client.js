@@ -1,0 +1,66 @@
+.client-options-page {
+  .option-group {
+    /* border: 1px dotted red; */
+    height: 348px;
+    &.back-nav {
+      height: 100px;
+    }
+  }
+  .well {
+    background-color: RGBA(0,0,0,0.6);
+    border: 1px solid @black;
+    color: white;
+    overflow: scroll;
+    height: 90%;
+    .option-row {
+      padding: 5px;
+      font-size: 14px;
+      white-space: no-wrap;
+      min-height: 30px;
+      clear:both;
+      SPAN.option-label {
+        font-weight: bolder;
+        width: 190px;
+        display: inline-block;
+      }
+      DIV.option-choices {
+        display: inline;
+      }
+      btn {
+        margin: 0 5px;
+        float: right;
+      }
+      SELECT {
+        width: 100%;
+      }
+      INPUT {
+        border-radius: 4px;
+        color: black;
+      }
+      .space-down {
+        height: 80px;
+      }
+    }
+  }
+  .divider {
+    clear: both;
+  }
+}
+@media (min-width: @screen-lg-min) {
+  .client-options-page {
+    .option-group {
+      padding-left: 20px;
+      float: left;
+      height: 500px;
+      width: 50%;
+      clear: none;
+      &.connect-as-group, &.website-login-group {
+        padding: 15px 20px;
+        margin-top: 60px;
+        margin-left: 120px;
+        min-height: 300px;
+        min-width: 380px;
+      }
+    }
+  }
+}
