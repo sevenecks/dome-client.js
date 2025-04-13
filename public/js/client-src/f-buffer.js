@@ -11,8 +11,6 @@ dome.setupOutputParser = function() {
         };
     };
     editorInit();
-    // define whoBox for later
-    var whoBox;
 
     dome.parseSocketData = function ( segment ) {
         var ts = new Date();
@@ -153,40 +151,6 @@ dome.setupOutputParser = function() {
         // make ips clickable, must be AFTER making links clickable
         segment = segment.replace( ip_regex, '<a href="https://whatismyipaddress.com/ip/$&" target="_new">$&</a>');
 
-        // check that who div exists, and if it does, do stuff
-        if (typeof whoBox == 'undefined') {
-            whoBox = $('#who-table');
-        }
-        if (whoBox.length) {
-        // this regex needs to come before the stuff that adds spans for selection
-        // match logging in/out users to update the who list
-            if (matches = segment.match(/\[\* SYS\-MSG \*\] ([\w]+)\/([\w]+) \((#[\d]+)\) has (connected|disconnected) [^(]+\(([\d]+)\)/i)) {
-            // console.log(matches[0]); // full
-            // console.log(matches[1]); // bgbbname
-            // console.log(matches[2]); // name
-            // console.log(matches[3]); // obj#
-            // console.log(matches[4]); // connected/disconnected
-            // console.log(matches[5]); // num online
-                if (dome.setFadeText && dome.statusDisplay) dome.setFadeText( dome.statusDisplay, matches[1] + '/' + matches[2] + ' ' + matches[4] );
-                if (matches[4] == 'disconnected') {
-                // remove from who list
-                    $('#' + matches[2] + '-who').remove();
-                    // update how many connected
-                    $('#how-many-connected').html('There are ' + matches[5] + ' connected');
-                } else if (matches[4] == 'connected') {
-                // insert in who list after the header
-                    var tempHtml = '<tr id="' + matches[2] + '-who"><td><a href="https://www.sindome.org/profile/' + matches[1] + '/" target="_blank"><img border="0" src="///www.sindome.org/bgbb/icon/' + matches[1] + '/pinky/image.png" title="' + matches[1] + '"></a></td><td><a data-who="' + matches[5] + '" href="javascript:void(0);">' + matches[3] + '</a></td><td class="who-name" title="' + matches[1] + ' played by ' + matches[2] + '"><a href="javascript:void(0);">' + matches[2] + '</a></td><td>0s</td></tr>';
-                    $(tempHtml).insertAfter('.who-header'); 
-                    // update how many connected
-                    $('#how-many-connected').html('There are ' + matches[5] + ' connected');
-                }
-
-                if ( dome.preferences.godMode ) {
-                    // swallow the notification
-                    return;
-                }
-            }
-        }
         // make obj#s have special spans for selection
         segment = segment.replace(/(\#\d+\b)/g,  '<span class="all-copy">$1</span>');
         // make $corified object references have special spans for selection

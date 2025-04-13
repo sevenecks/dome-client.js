@@ -36,8 +36,8 @@ exports.connect = function( req, res ) {
       'stats': connected(),
       'meta' : {
        'title' : 'Connect - Modern Gaming Client',
-       'description' : 'Connect to Sindome using its state of the art Modern Gaming Client. No flash, no plugins, just a modern browser. Play with your iPad or check in from the company computer. There\'s nothing to install.',
-       'keywords' : 'moo-client, telnet client, modern gaming client, play sindome, text-based game, websocket-telnet'
+       'description' : 'Connect to MUDs using a state of the art Modern Gaming Client. No flash, no plugins, just a modern browser. Play with your iPad or check in from the company computer. There\'s nothing to install.',
+       'keywords' : 'moo-client, telnet client, modern gaming client, play, text-based game, websocket-telnet'
       }
     });
 };
@@ -55,9 +55,9 @@ exports.options = function( req, res ) {
 exports.client = function( req, res ) {
   res.render( 'client', {
     'meta' : {
-      'title' : 'Sindome\'s Modern Gaming Client',
-      'description' : 'Someone playing Sindome via Sindome\'s Modern Gaming Client',
-      'keywords' : 'moo-client, telnet client, modern gaming client, play sindome, text-based game, websocket-telnet'
+      'title' : 'Modern Gaming Client',
+      'description' : 'Someone playing a MUD via Dome.js Modern Gaming Client',
+      'keywords' : 'moo-client, telnet client, modern gaming client, play, text-based game, websocket-telnet'
     }
   });
 };
@@ -74,7 +74,7 @@ exports.editor = function( req, res ) {
     },
     'meta' : {
       'title' : 'Untitled Local Editor ',
-      'description' : 'Local editor window for the Sindome Modern Gaming Client.',
+      'description' : 'Local editor window for the Dome.js Modern Gaming Client.',
       'keywords' : 'gaming client editor'      
     }
   });

@@ -6,11 +6,8 @@ $(document).ready(function(){
         socket          : null,
         socketState     : SOCKET_STATE_ENUM.BEFORE_FIRST,
         titleBarText    : null,
-        gameHealth      : [],
         client          : $('#browser-client'),
         buffer          : $('#lineBuffer'),
-        healthDisplay   : $('#gameHealth'),
-        healthDetail    : $('#gameHealthDetail'),
         statusDisplay   : $('#statusMsg'),
         editorListView  : $('#editor-list-view'),
         inputReader     : $('#inputBuffer'),
@@ -50,7 +47,6 @@ $(document).ready(function(){
     if (dome.setupEditorSupport) dome.setupEditorSupport();
     if (dome.setupAutoscroll) dome.setupAutoscroll();
     if (dome.setupButtons) dome.setupButtons();
-    if (dome.setupHealthCheck) dome.setupHealthCheck();
 
     dome.setupOutputParser();
     setTimeout( function() {
