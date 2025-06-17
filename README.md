@@ -81,7 +81,7 @@ On most LambdaMOO servers you can `@edit-options +local` and this feature will '
 
 ### Command Hints Customization
 
-The code comes bundled with a set of command hints that are common to many MOO's, but every game is different. If you want to customize the command hints it's easy. Just edit config/ac/player.txt and add/remove whatever command hints you want. When a player starts typing a command, the web client will pop up an overlay that shows possible commands, and lets them use up/down arrows + enter to autocomplete! There is also built in support for config/ac/guest.txt to handle guest plaeyrs.
+The code comes bundled with a set of command hints that are common to many MOO's, but every game is different. If you want to customize the command hints it's easy. Just edit config/ac/player.txt and add/remove whatever command hints you want. When a player starts typing a command, the web client will pop up an overlay that shows possible commands, and lets them use up/down arrows + enter to autocomplete! There is also built in support for config/ac/guest.txt to handle guest players.
 
 ## Linting
 If you want a lint a file you need npx because that's the only way I got it to work. If you want to come up with a better linting solution for this code, I am open to pull requests!
