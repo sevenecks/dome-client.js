@@ -12,7 +12,7 @@ You are free to use that public client as much as you want! In fact, it's the de
 
 ## Requirements
 
-1. nodejs (16+ recommended but may run on earlier versions)
+1. nodejs (22+ recommended but may run on earlier versions)
 2. npm
 
 ## Installation
