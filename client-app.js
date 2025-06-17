@@ -156,8 +156,8 @@ fs.readFile( process.env.AUTOCOMPLETE_PLAYER, function( err, data ) {
         });
       
         if ( process.env.SSL_PORT ) {
-            sslServer.listen( process.env.PORT, process.env.IP, function() {
-                logger.info( vDesc +  ' (node ' + process.version + ') listening on ip ' + process.env.IP + ' and port ' + process.env.PORT );
+            sslServer.listen( process.env.SSL_PORT, process.env.IP, function() {
+                logger.info( vDesc +  ' (node ' + process.version + ') listening on ip ' + process.env.IP + ' and port ' + process.env.SSL_PORT );
             });
         }
     } else {
