@@ -3,7 +3,8 @@
   "version": "2.6.0",
   "private": true,
   "scripts": {
-    "start": "node client-app"
+    "start": "node client-app",
+    "test": "node tests/dateformat.test.js"
   },
   "dependencies": {
     "async": "^3.2.4",
