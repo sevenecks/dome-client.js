@@ -49,7 +49,7 @@ if ( process.env.SSL_PORT ) {
         sslOptions['ca'] = fs.readFileSync(process.env.SSL_CA);
     }
 
-    if ( SSL_PASSPHRASE ) {
+    if ( process.env.SSL_PASSPHRASE ) {
         sslOptions['passphrase'] = process.env.SSL_PASSPHRASE;
     }
 
