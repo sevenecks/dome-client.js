@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## 06/18/25
+* Fixed several bugs
+* Updated .env-example
+
 ## 04/11/25
 
 * Updated README
