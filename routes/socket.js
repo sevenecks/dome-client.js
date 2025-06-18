@@ -195,7 +195,8 @@ exports.connection = function ( socket ) {
 
     if ( command.indexOf('connect ') != -1 || command.indexOf('co ') != -1 ) {
       // possibly id the character being connected
-      if (charmatch = command.match( /(connect|co) (\w+) \w/)) {
+      var charmatch = command.match( /(connect|co) (\w+) \w/ );
+      if ( charmatch ) {
         var charname = charmatch[charmatch.length-1];
         // log some useful information for troubleshooting
         logUser( socket, 'USR', [ charname ] );
