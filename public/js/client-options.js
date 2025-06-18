@@ -88,7 +88,7 @@ var clientOptions = {
     },
     'buildQueryString' : function() {
         var qs = '';
-        for (name in clientOptions.options) {
+        for (var name in clientOptions.options) {
             var option = this.get(name);
             qs += (qs == '' ? '' : '&');
             //console.log(option);
