@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node client-app",
-    "test": "node tests/dateformat.test.js"
+    "test": "node tests/dateformat.test.js && node tests/saveRoute.test.js"
   },
   "dependencies": {
     "async": "^3.2.4",
