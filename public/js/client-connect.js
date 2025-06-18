@@ -43,16 +43,16 @@ store.getUsernames = function() {
 };
 
 store.getUser = function(username) {
-  username = username.toLowerCase();
-  pwd = this.get('user-' + username + '-passwd');
+  var username = username.toLowerCase();
+  var pwd = this.get('user-' + username + '-passwd');
   return ({ 'username' : username, 'password' : pwd });
 };
 
 store.addUser = function(user) {
-  username = user.username.toLowerCase();
-  password = user.password;
-  
-  users = this.getUsernames();
+  var username = user.username.toLowerCase();
+  var password = user.password;
+
+  var users = this.getUsernames();
   if (!_.contains(users, username)) {
     users.push(username);
   }
