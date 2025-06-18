@@ -63,7 +63,8 @@ exports.client = function( req, res ) {
 };
 
 exports.editor = function( req, res ) {
-  var template = editorType = req.params.type;
+  var editorType = req.params.type;
+  var template = editorType;
   if ( editorType != "verb" && editorType != "note-viewer") {
     // only verb gets special support right now
     template = "basic";
