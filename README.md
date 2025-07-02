@@ -49,6 +49,10 @@ Below are also instructions for doing it on Ubuntu.
 * Local Editing of files / properties / verbs. If you're connected to a MOO and you set @edit-options +local you should be able to edit verbs in the local edtior. The game you're using can actually ship any text to the local editor and a command that it should execute upon 'save'. Double click the screen to pause / unpause the scroll
 * Object Number & Corified Reference selection on click (for easy copy and paste)
 
+## Architecture
+For a detailed overview of how the browser, Node.js server and game server interact, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+
 ## Passthrough Identification of Player IP/Hostname
 Running a webclient can be fun, but you may also be concerned about providing one that does not identify the player who is using it by their IP, since the IP that would show as connecting to the game would be the IP of the webclient server. That can be handled by the game. If you game sends the text: '#$# dome-client-user' the webclient running for the player will send @dome-client-user <IP or hostname>.
 
