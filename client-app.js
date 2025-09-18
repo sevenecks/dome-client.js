@@ -1,7 +1,8 @@
 /** General Requires **/
 require('dotenv').config()
 
-const path = require('node:path'); 
+const path = require('node:path');
+const os = require('node:os');
 const CONSTANTS  = require('constants');
 const logger     = require( './lib/logger' ).named('client-app');
 const io         = require( 'socket.io' );
@@ -28,6 +29,7 @@ const routes     = {
 
 /** Constants **/
 const versionHash = process.env.GIT_HASH || ('t' + (new Date()).getTime());
+const appStartTime = new Date();
 
 /** Build Express & Start the HTTP Server **/
 const app        = express();
@@ -37,6 +39,39 @@ const httpMgr = io.listen( server, function() {
 } );
 let httpsMgr = undefined; // defined outside if so it exists beyond the scope of the if
 let sslServer = undefined; // defined outside if so it exists beyond the scope of the if
+
+const getConnectedSockets = function(manager) {
+    if (!manager) {
+        return 0;
+    }
+
+    if (manager.engine && typeof manager.engine.clientsCount === 'number') {
+        return manager.engine.clientsCount;
+    }
+
+    const namespace = manager.sockets || (manager.of ? manager.of('/') : null);
+    if (namespace) {
+        if (namespace.sockets) {
+            if (typeof namespace.sockets.size === 'number') {
+                return namespace.sockets.size;
+            }
+
+            if (typeof namespace.sockets.length === 'number') {
+                return namespace.sockets.length;
+            }
+
+            if (typeof namespace.sockets === 'object') {
+                return Object.keys(namespace.sockets).length;
+            }
+        }
+
+        if (typeof namespace.size === 'number') {
+            return namespace.size;
+        }
+    }
+
+    return 0;
+};
 
 /** Figure out if we're using SSL or not **/
 if ( process.env.SSL_PORT ) {
@@ -196,5 +231,17 @@ app.get( '/client-options/', routes.screens.options ); // Options Screen
 app.get( '/player-client/', routes.screens.client );   // Game Client Screen
 app.get( '/editor/:type(basic|basic-readonly|verb|note-viewer)/', routes.screens.editor );  // Editor Windows
 app.get( '/ac/:type(p|j|a|c|w|o)', routes.autocomplete.basic );        // Fetch autocomplete terms
+app.get( '/health', function( req, res ) {
+    const memoryUsage = process.memoryUsage();
+    const response = {
+        'Current RSS': memoryUsage.rss,
+        'Current Heap Used': memoryUsage.heapUsed,
+        'Currently Connected': getConnectedSockets(httpMgr) + getConnectedSockets(httpsMgr),
+        'CPU Load': os.loadavg()[0],
+        'Last Application Restart': appStartTime.toISOString()
+    };
+
+    res.json( response );
+});
 /** Handle client side logs **/
 app.post( '/save/:filename', routes.save.log );
